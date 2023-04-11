@@ -1,0 +1,8 @@
+\$client
+\$stream
+\$bytes
+\$i
+\$data
+\$sendback
+\$sendback2
+\$sendbyte
