@@ -1,0 +1,4 @@
+iex
+Out-String
+pwd
+New-Object
